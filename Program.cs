@@ -12,6 +12,7 @@ namespace listtest
         {
             List<string> list = new List<string>();
             int temp_halt = 0;
+            //TEEEST kurwaaaa mać
             do
             {
                 Console.WriteLine("number of elements : {0}", list.Count);
