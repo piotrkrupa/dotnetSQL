@@ -11,7 +11,7 @@ namespace listtest
         static void Main()
         {
             List<string> list = new List<string>();
-
+//TEEEEEST
             int temp_halt = 0;
             do
             {
