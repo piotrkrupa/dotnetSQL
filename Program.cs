@@ -10,35 +10,30 @@ namespace listtest
     {
         static void Main()
         {
-            AddDel Ob_AddDel = new AddDel();
-
+            int n = 0;
+            Program Ob_Program = new Program();
             Console.WriteLine("1. Dodaj\n2. Usun\n3. Sortuj\n4. Podglad");
-            Ob_AddDel.Add();
-            Console.ReadLine();
-        }
-    }
+            var n_switch = Int32.TryParse(Console.ReadLine(), out n);
 
-    class Print
-    {
-        public void PrintList()
-        {
-            List<string> list = new List<string>();
-            Console.WriteLine("/nLIST:");
-            for (int i = 0; i < list.Count; i++)
+            do
             {
-                Console.WriteLine("{0}. {1}", i + 1, list[i]);
-            }
-            Console.ReadLine();
-        }
+                switch (n)
+                {
+                    case 1: Ob_Program.Add();
+                        break;
+                    case 2:
+                        break;
+                }
+                Console.ReadLine();
+            } while (n != 0);
 
+        }
     }
 
-    class AddDel
+    class Program
     {
         public void Add()
         {
-            Print ob_PrintList = new Print();
-
             List<string> list = new List<string>();
             int temp_halt = 0;
             //TEEEST kurwaaaa mać
@@ -49,11 +44,14 @@ namespace listtest
                 Console.WriteLine("CONTINUE TYPING? 0:YES 1:NO");
                 var success = Int32.TryParse(Console.ReadLine(), out temp_halt); //to jest konwersja!!!
             } while (temp_halt == 0);
-
             /*foreach (int dana in list)
             {Console.WriteLine(dana);}*/
-            ob_PrintList.PrintList();
-
+            Console.WriteLine("\nLIST:");
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("{0}. {1}", i + 1, list[i]);
+            }
+            Console.ReadLine();
         }
     }
 
