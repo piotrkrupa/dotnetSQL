@@ -20,7 +20,7 @@ namespace listtest
 
             do
             {
-                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort\n4. Show\nChoose: ");
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\nChoose: ");
                 var n_switch = Int32.TryParse(Console.ReadLine(), out n);
                 Console.Write("\n");
                 switch (n)
@@ -32,6 +32,8 @@ namespace listtest
                     case 3: Ob_Program.Sort();
                         break;
                     case 4: Ob_Program.Show();
+                        break;
+                    case 5: Ob_Program.Insert();
                         break;
                     default:
                         break;
@@ -83,6 +85,18 @@ namespace listtest
             /*foreach (int dana in list)
             {Console.WriteLine(dana);}*/
         }
+
+        public void Insert()
+        {
+            int insert;
+            string insertString;
+            Console.Write("\nInsert after pos: ");
+            var insertAfter = Int32.TryParse(Console.ReadLine(), out insert);
+            Console.Write("\nInsert: ");
+            insertString = Console.ReadLine();
+            Helper.list.Insert(insert, insertString);
+        }
+
     }
 
 }
