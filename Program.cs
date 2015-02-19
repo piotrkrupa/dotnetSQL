@@ -29,6 +29,8 @@ namespace listtest
                         break;
                     case 2: Ob_Program.Del();
                         break;
+                    case 3: Ob_Program.Sort();
+                        break;
                     case 4: Ob_Program.Show();
                         break;
                     default:
@@ -49,11 +51,24 @@ namespace listtest
 
         public void Del()
         {
+
             int deleteAtTemp = 0;
             Show();
-            Console.WriteLine("\nDelete at pos: ");
+            Console.Write("\nDelete at pos: ");
             var deleteAt = Int32.TryParse(Console.ReadLine(), out deleteAtTemp); //to jest konwersja!!!
-            Helper.list.RemoveAt(deleteAtTemp);
+            Console.WriteLine(deleteAtTemp);
+            if (deleteAtTemp <= Helper.list.Count && deleteAtTemp > 0 )
+            {
+                Helper.list.RemoveAt(deleteAtTemp - 1);
+            }else{
+                Console.WriteLine("ty idioto...");
+            }
+        }
+
+        public void Sort()
+        {
+            Console.WriteLine("\nAlphabetically sorting from A - Z ");
+            Helper.list.Sort();
         }
 
         public void Show()
