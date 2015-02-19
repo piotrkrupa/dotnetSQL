@@ -6,10 +6,39 @@ using System.Threading.Tasks;
 
 namespace listtest
 {
-    class Program
+    class Menu
     {
         static void Main()
         {
+            AddDel Ob_AddDel = new AddDel();
+
+            Console.WriteLine("1. Dodaj\n2. Usun\n3. Sortuj\n4. Podglad");
+            Ob_AddDel.Add();
+            Console.ReadLine();
+        }
+    }
+
+    class Print
+    {
+        public void PrintList()
+        {
+            List<string> list = new List<string>();
+            Console.WriteLine("/nLIST:");
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("{0}. {1}", i + 1, list[i]);
+            }
+            Console.ReadLine();
+        }
+
+    }
+
+    class AddDel
+    {
+        public void Add()
+        {
+            Print ob_PrintList = new Print();
+
             List<string> list = new List<string>();
             int temp_halt = 0;
             //TEEEST kurwaaaa mać
@@ -23,15 +52,13 @@ namespace listtest
 
             /*foreach (int dana in list)
             {Console.WriteLine(dana);}*/
+            ob_PrintList.PrintList();
 
-            Console.WriteLine("/nLIST:");
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.WriteLine("{0}. {1}", i + 1, list[i]);
-            }
-            Console.ReadLine();
         }
     }
+
+
+
 
     /*class WriteRead
     {
