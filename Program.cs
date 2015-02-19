@@ -6,27 +6,36 @@ using System.Threading.Tasks;
 
 namespace listtest
 {
+    public class Helper
+    {
+       public static List<string> list = new List<string>();   
+    }
+
     class Menu
     {
         static void Main()
         {
-            int n = 0;
+            int n;
             Program Ob_Program = new Program();
-            Console.WriteLine("1. Dodaj\n2. Usun\n3. Sortuj\n4. Podglad");
-            var n_switch = Int32.TryParse(Console.ReadLine(), out n);
 
             do
             {
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort\n4. Show\nChoose: ");
+                var n_switch = Int32.TryParse(Console.ReadLine(), out n);
+                Console.Write("\n");
                 switch (n)
                 {
                     case 1: Ob_Program.Add();
                         break;
-                    case 2:
+                    case 2: Ob_Program.Del();
+                        break;
+                    case 4: Ob_Program.Show();
+                        break;
+                    default:
                         break;
                 }
-                Console.ReadLine();
             } while (n != 0);
-
+ 
         }
     }
 
@@ -34,57 +43,31 @@ namespace listtest
     {
         public void Add()
         {
-            List<string> list = new List<string>();
-            int temp_halt = 0;
-            //TEEEST kurwaaaa mać
-            do
+            Console.Write("Add (List size: {0}): ", Helper.list.Count);
+            Helper.list.Add(Console.ReadLine());
+        }
+
+        public void Del()
+        {
+            int deleteAtTemp = 0;
+            Show();
+            Console.WriteLine("\nDelete at pos: ");
+            var deleteAt = Int32.TryParse(Console.ReadLine(), out deleteAtTemp); //to jest konwersja!!!
+            Helper.list.RemoveAt(deleteAtTemp);
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("-------------------");
+            Console.WriteLine("LIST:");
+            for (int i = 0; i < Helper.list.Count; i++)
             {
-                Console.WriteLine("number of elements : {0}", list.Count);
-                list.Add(Console.ReadLine());
-                Console.WriteLine("CONTINUE TYPING? 0:YES 1:NO");
-                var success = Int32.TryParse(Console.ReadLine(), out temp_halt); //to jest konwersja!!!
-            } while (temp_halt == 0);
+                Console.WriteLine("{0}. {1}", i + 1, Helper.list[i]);
+            }
+            Console.WriteLine("-------------------\n");
             /*foreach (int dana in list)
             {Console.WriteLine(dana);}*/
-            Console.WriteLine("\nLIST:");
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.WriteLine("{0}. {1}", i + 1, list[i]);
-            }
-            Console.ReadLine();
         }
     }
 
-
-
-
-    /*class WriteRead
-    {
-        string tekst;
-
-        public void Wczytaj()
-        {
-            Console.WriteLine("Podaj napis: ");
-            tekst = Console.ReadLine();
-        }
-        public void Napisz()
-        {
-            Console.WriteLine("Oto co napisales: ");
-            Console.WriteLine(tekst);
-        }
-    }
-
-    class Program
-    {
-        static void Main()
-        {
-            WriteRead obiekt_WR = new WriteRead();
-            obiekt_WR.Wczytaj();
-            obiekt_WR.Napisz();
-            Console.ReadLine();
-
-            
-            List<int>
-        }
-    }*/
 }
