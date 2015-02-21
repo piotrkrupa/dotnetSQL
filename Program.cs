@@ -12,12 +12,58 @@ namespace listtest
        public static List<string> list = new List<string>();   
     }
 
+    class DBConnect
+    {
+        public MySqlConnection myConn;
+        private string server;
+        //private string database;
+        private string uid;
+        private string password;
+        private string port;
+
+        public DBConnect()
+        {
+            Init();
+        }
+
+        public void Init()
+        {
+            server = "localhost";
+            //database = "connectcsharptomysql";
+            port = "3306";
+            uid = "username";
+            password = "password";
+            //string myConnection = "datasource=localhost;port=3306;username=root;password=root";
+            string myConnection = "datasource=" + server + ";" + "port=" + port + ";" + "username=" + uid + ";" + "password=" + password + ";";
+            myConn = new MySqlConnection(myConnection);
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter();
+            myDataAdapter.SelectCommand = new MySqlCommand(" select * database.edata ;", myConn);
+            MySqlCommandBuilder cb = new MySqlCommandBuilder(myDataAdapter);
+        }
+
+        public bool Connect()
+        {
+            try
+            {
+                myConn.Open();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+    }
+
     class Menu
     {
         static void Main()
         {
             int n;
             Program Ob_Program = new Program();
+            DBConnect Ob_DbConnect = new DBConnect();
 
             do
             {
@@ -36,7 +82,7 @@ namespace listtest
                         break;
                     case 5: Ob_Program.Insert();
                         break;
-                    case 6: Ob_Program.Connect();
+                    case 6: Ob_DbConnect.Connect();
                         break;
                     default:
                         break;
@@ -100,26 +146,6 @@ namespace listtest
             insertString = Console.ReadLine();
             Helper.list.Insert(insert, insertString);
         }
-
-        public void Connect()
-        {
-            string myConnection = "datasource=localhost;port=3306;username=root;password=root";
-            MySqlConnection myConn = new MySqlConnection(myConnection);
-            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter();
-            myDataAdapter.SelectCommand = new MySqlCommand(" select * database.edata ;", myConn);
-            MySqlCommandBuilder cb = new MySqlCommandBuilder(myDataAdapter);
-            try
-            {
-                myConn.Open();
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            //adsa
-        }
-
     }
 
 }
