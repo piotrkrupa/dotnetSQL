@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//TEST TETETST
+using MySql.Data.MySqlClient;
+
 namespace listtest
 {
     public class Helper
@@ -20,7 +21,7 @@ namespace listtest
 
             do
             {
-                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\nChoose: ");
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n6. Connect to MySQL database\nChoose: ");
                 var n_switch = Int32.TryParse(Console.ReadLine(), out n);
                 Console.Write("\n");
                 switch (n)
@@ -34,6 +35,8 @@ namespace listtest
                     case 4: Ob_Program.Show();
                         break;
                     case 5: Ob_Program.Insert();
+                        break;
+                    case 6: Ob_Program.Connect();
                         break;
                     default:
                         break;
@@ -98,5 +101,25 @@ namespace listtest
             Helper.list.Insert(insert, insertString);
         }
 
+        public void Connect()
+        {
+            string myConnection = "datasource=localhost;port=3306;username=root;password=root";
+            MySqlConnection myConn = new MySqlConnection(myConnection);
+            MySqlDataAdapter myDataAdapter = new MySqlDataAdapter();
+            myDataAdapter.SelectCommand = new MySqlCommand(" select * database.edata ;", myConn);
+            MySqlCommandBuilder cb = new MySqlCommandBuilder(myDataAdapter);
+            try
+            {
+                myConn.Open();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //adsa
+        }
+
     }
+
 }
