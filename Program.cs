@@ -62,7 +62,8 @@ namespace listtest
             if (deleteAtTemp <= Helper.list.Count && deleteAtTemp > 0 )
             {
                 Helper.list.RemoveAt(deleteAtTemp - 1);
-            }else{
+            }else
+            {
                 Console.WriteLine("ty idioto...");
             }
         }
@@ -98,5 +99,4 @@ namespace listtest
         }
 
     }
-
 }
