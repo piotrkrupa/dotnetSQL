@@ -16,7 +16,7 @@ namespace listtest
     {
         public MySqlConnection myConn;
         private string server;
-        //private string database;
+        private string database;
         private string uid;
         private string password;
         private string port;
@@ -24,20 +24,22 @@ namespace listtest
         public DBConnect()
         {
             Init();
+            Connect();
         }
 
         public void Init()
         {
-            server = "localhost";
-            //database = "connectcsharptomysql";
+            server = "127.0.0.1";
+            database = "test2";
             port = "3306";
-            uid = "username";
-            password = "password";
-            //string myConnection = "datasource=localhost;port=3306;username=root;password=root";
-            string myConnection = "datasource=" + server + ";" + "port=" + port + ";" + "username=" + uid + ";" + "password=" + password + ";";
+            uid = "root";
+            password = "root";
+            //string myConnection = "server=127.0.0.1;uid=root;" + "pwd=root;database=test2;";
+            string myConnection = "datasource=" + server + ";" + "port=" + port + ";" + "username=" + uid + ";" + "password=" + password + ";" + "database=" + database + ";";
             myConn = new MySqlConnection(myConnection);
+
             MySqlDataAdapter myDataAdapter = new MySqlDataAdapter();
-            myDataAdapter.SelectCommand = new MySqlCommand(" select * database.edata ;", myConn);
+            myDataAdapter.SelectCommand = new MySqlCommand(" select* database.edata ;", myConn);
             MySqlCommandBuilder cb = new MySqlCommandBuilder(myDataAdapter);
         }
 
@@ -45,6 +47,7 @@ namespace listtest
         {
             try
             {
+                Console.WriteLine("Connecting to MySQL database...");
                 myConn.Open();
                 return true;
             }
@@ -53,6 +56,22 @@ namespace listtest
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        public bool Disconnect()
+        {
+            try
+            {
+                Console.WriteLine("Disconnecting from MySQL database...");
+                myConn.Close();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
         }
 
     }
@@ -65,9 +84,10 @@ namespace listtest
             Program Ob_Program = new Program();
             DBConnect Ob_DbConnect = new DBConnect();
 
+
             do
             {
-                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n6. Connect to MySQL database\nChoose: ");
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n6. Connect to MySQL database\n7. Disconnect MySQL\nChoose: ");
                 var n_switch = Int32.TryParse(Console.ReadLine(), out n);
                 Console.Write("\n");
                 switch (n)
@@ -83,6 +103,8 @@ namespace listtest
                     case 5: Ob_Program.Insert();
                         break;
                     case 6: Ob_DbConnect.Connect();
+                        break;
+                    case 7: Ob_DbConnect.Disconnect();
                         break;
                     default:
                         break;
