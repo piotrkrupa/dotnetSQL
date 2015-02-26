@@ -77,7 +77,8 @@ namespace listtest
         public void InsertMySQL()
         {
             string query;
-            query = "INSERT INTO tablename (name) VALUES('25')";
+            //query = "INSERT INTO tablename (name) VALUES('25')";
+            query = "INSERT INTO `test`.`tablename` (`name`) VALUES (111);";
 
             if (this.Connect() == true)
             {
