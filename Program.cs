@@ -75,20 +75,52 @@ namespace listtest
 
         }
 
-        public void InsertMySQL()
+        public void AddMySQL()
         {
             //AUTO_INCREMENT!
             //...hmm tworzyc tutaj tabele, sprawdzac if not null? czy w workbenchu...
+            Console.Write("Add:");
             data = Console.ReadLine();
             string query = "INSERT INTO test.lololo (data) VALUES('" + data + "')";
 
             if (this.Connect() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, myConn);
+                Console.WriteLine("Add successful");
                 cmd.ExecuteNonQuery();
                 this.Disconnect();
             }
             
+        }
+
+        public void DelMySQL()
+        {
+
+            Console.Write("Del:");
+            string query = "DELETE FROM test.lololo WHERE id='4';";
+
+
+            if (this.Connect() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, myConn);
+                Console.WriteLine("DEL successful");
+                cmd.ExecuteNonQuery();
+                this.Disconnect();
+            }
+        }
+
+        public void ShowMySQL()
+        {
+            string query = "select * from test.lololo;";
+
+            if (this.Connect() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, myConn);
+                Console.WriteLine(cmd);
+                Console.WriteLine("TEST KUUUUURCZAKI");
+                cmd.ExecuteNonQuery();
+                this.Disconnect();
+            }
         }
 
     }
@@ -103,7 +135,7 @@ namespace listtest
 
             do
             {
-                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n------MySQL------\n6. Connect to MySQL database\n7. Disconnect MySQL\n8. Insert in MySQL\nChoose: ");
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n------MySQL------\n6. Connect to MySQL database\n7. Disconnect MySQL\n8. Add to MySQL\n9. Del from MySQL\n10. Show MySQL Database\nChoose: ");
                 var n_switch = Int32.TryParse(Console.ReadLine(), out n);
                 Console.Write("\n");
                 switch (n)
@@ -122,7 +154,11 @@ namespace listtest
                         break;
                     case 7: Ob_DbConnect.Disconnect();
                         break;
-                    case 8: Ob_DbConnect.InsertMySQL();
+                    case 8: Ob_DbConnect.AddMySQL();
+                        break;
+                    case 9: Ob_DbConnect.DelMySQL();
+                        break;
+                    case 10: Ob_DbConnect.ShowMySQL();
                         break;
                     default:
                         break;
