@@ -20,6 +20,7 @@ namespace listtest
         private string uid;
         private string password;
         private string port;
+        private string data;
 
         public DBConnect()
         {
@@ -76,9 +77,10 @@ namespace listtest
 
         public void InsertMySQL()
         {
-            string query;
-            query = "INSERT INTO test.tablename (id, name) VALUES('11', 'lololo')";
-            //query = "INSERT INTO `test`.`tablename` (`tabname`) VALUES (test);";
+            //AUTO_INCREMENT!
+            //...hmm tworzyc tutaj tabele, sprawdzac if not null? czy w workbenchu...
+            data = Console.ReadLine();
+            string query = "INSERT INTO test.lololo (data) VALUES('" + data + "')";
 
             if (this.Connect() == true)
             {
@@ -86,7 +88,7 @@ namespace listtest
                 cmd.ExecuteNonQuery();
                 this.Disconnect();
             }
-
+            
         }
 
     }
@@ -142,7 +144,7 @@ namespace listtest
         {
 
             int deleteAtTemp = 0;
-            Show();
+            this.Show();
             Console.Write("\nDelete at pos: ");
             var deleteAt = Int32.TryParse(Console.ReadLine(), out deleteAtTemp); //to jest konwersja!!!
             Console.WriteLine(deleteAtTemp);
