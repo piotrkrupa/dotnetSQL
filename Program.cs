@@ -24,13 +24,13 @@ namespace listtest
         public DBConnect()
         {
             Init();
-            Connect();
+            //Connect();
         }
 
         public void Init()
         {
             server = "127.0.0.1";
-            database = "test2";
+            database = "test";
             port = "3306";
             uid = "root";
             password = "root";
@@ -74,6 +74,20 @@ namespace listtest
 
         }
 
+        public void InsertMySQL()
+        {
+            string query;
+            query = "INSERT INTO tablename (name) VALUES('25')";
+
+            if (this.Connect() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, myConn);
+                cmd.ExecuteNonQuery();
+                this.Disconnect();
+            }
+
+        }
+
     }
 
     class Menu
@@ -84,10 +98,9 @@ namespace listtest
             Program Ob_Program = new Program();
             DBConnect Ob_DbConnect = new DBConnect();
 
-
             do
             {
-                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n6. Connect to MySQL database\n7. Disconnect MySQL\nChoose: ");
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n6. Connect to MySQL database\n7. Disconnect MySQL\n8. Insert in MySQL\nChoose: ");
                 var n_switch = Int32.TryParse(Console.ReadLine(), out n);
                 Console.Write("\n");
                 switch (n)
@@ -105,6 +118,8 @@ namespace listtest
                     case 6: Ob_DbConnect.Connect();
                         break;
                     case 7: Ob_DbConnect.Disconnect();
+                        break;
+                    case 8: Ob_DbConnect.InsertMySQL();
                         break;
                     default:
                         break;
@@ -168,6 +183,7 @@ namespace listtest
             insertString = Console.ReadLine();
             Helper.list.Insert(insert, insertString);
         }
+
     }
 
 }
