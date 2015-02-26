@@ -101,7 +101,7 @@ namespace listtest
 
             do
             {
-                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n6. Connect to MySQL database\n7. Disconnect MySQL\n8. Insert in MySQL\nChoose: ");
+                Console.Write("\nMENU\n1. Add\n2. Del\n3. Sort A-Z\n4. Show\n5. Insert After pos\n------MySQL------\n6. Connect to MySQL database\n7. Disconnect MySQL\n8. Insert in MySQL\nChoose: ");
                 var n_switch = Int32.TryParse(Console.ReadLine(), out n);
                 Console.Write("\n");
                 switch (n)
