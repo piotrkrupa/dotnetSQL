@@ -113,12 +113,12 @@ namespace listtest
         public void ShowMySQL()
         {
             string query = "select * from test.lololo;";
-
+            //ostatnia proba chujowa
             if (this.Connect() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, myConn);
 
-                Console.WriteLine("TEST KUUUUURCZAKI");
+                Console.WriteLine("TEST");
                 cmd.ExecuteNonQuery();
                 this.Disconnect();
             }
