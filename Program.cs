@@ -96,8 +96,9 @@ namespace listtest
         public void DelMySQL()
         {
 
-            Console.Write("Del:");
-            string query = "DELETE FROM test.lololo WHERE id='4';";
+            Console.Write("Del ... where id:");
+            data = Console.ReadLine();
+            string query = "DELETE FROM test.lololo WHERE id='" + data + "';";
 
 
             if (this.Connect() == true)
@@ -116,7 +117,7 @@ namespace listtest
             if (this.Connect() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, myConn);
-                Console.WriteLine(cmd);
+
                 Console.WriteLine("TEST KUUUUURCZAKI");
                 cmd.ExecuteNonQuery();
                 this.Disconnect();
