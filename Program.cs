@@ -22,11 +22,11 @@ namespace listtest
         private string port;
         private string data;
 
-        public DBConnect()
+        /*public DBConnect()
         {
             Init();
             //Connect();
-        }
+        }*/
 
         public void Init()
         {
@@ -133,6 +133,7 @@ namespace listtest
             int n;
             Program Ob_Program = new Program();
             DBConnect Ob_DbConnect = new DBConnect();
+            Ob_DbConnect.Init();
 
             do
             {
