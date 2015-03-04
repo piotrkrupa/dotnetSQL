@@ -48,7 +48,7 @@ namespace listtest
         {
             try
             {
-                Console.WriteLine("Connecting to MySQL database...");
+                Console.WriteLine("\n--Connecting to MySQL database...--\n");
                 myConn.Open();
                 return true;
             }
@@ -63,7 +63,7 @@ namespace listtest
         {
             try
             {
-                Console.WriteLine("Disconnecting from MySQL database...");
+                Console.WriteLine("\n--Disconnecting from MySQL database...--\n");
                 myConn.Close();
                 return true;
             }
@@ -115,13 +115,19 @@ namespace listtest
         public void ShowMySQL()
         {
             string query = "select * from test.lololo;";
-            //ostatnia proba chujowa
+            MySqlDataReader readSQL = null;
+
             if (this.Connect() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, myConn);
+                readSQL = cmd.ExecuteReader();
 
-                Console.WriteLine("TEST");
-                cmd.ExecuteNonQuery();
+                while (readSQL.Read() == true)
+                {
+                    Console.WriteLine(readSQL.GetInt32(0) + ". " + readSQL.GetString(1));
+                }
+
+                //cmd.ExecuteNonQuery();  CHECK & REPAIR
                 this.Disconnect();
             }
         }
@@ -228,5 +234,4 @@ namespace listtest
         }
 
     }
-    //asdasdasdsadsa
 }
