@@ -199,7 +199,7 @@ namespace listtest
                 Helper.list.RemoveAt(deleteAtTemp - 1);
             }else
             {
-                Console.WriteLine("ty idioto...");
+                Console.WriteLine("nothing to delete");
             }
         }
 
